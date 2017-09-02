@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -7,13 +8,9 @@ from flask import Flask
 from pyjade.ext.jinja import PyJadeExtension
 import os
 
-from ui import module as UI
-from api import module as API
+from .modules import __all__ as modules
 
 __author__ = "Abhay Arora (@BzFTMxc)"
-
-
-modules = [UI, API]
 
 def create_app(config, modules=modules):
     app = Flask(__name__,
@@ -21,6 +18,6 @@ def create_app(config, modules=modules):
     app.jinja_env.add_extension(PyJadeExtension)
 
     for module in modules:
-        module.bind_to(app)
+        module.bind(app)
     
     return app
