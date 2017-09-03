@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -16,6 +15,8 @@ def create_app(config, modules=modules):
     app = Flask(__name__,
                 static_folder=os.path.dirname(__file__) + '/../static')
     app.jinja_env.add_extension(PyJadeExtension)
+
+    app._CONF = config
 
     for module in modules:
         module.bind(app)

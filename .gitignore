@@ -224,3 +224,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,linux,emacs,python,windows,virtualenv
+
+# Manual Edits
+data
+cache

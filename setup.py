@@ -8,5 +8,5 @@ from setuptools import setup
 __author__ = "Abhay Arora (@BzFTMxc)"
 
 
-setup(name='margikarp',
-      packages=['margikarp'])
+setup(name='geoweb',
+      packages=['geoweb'])

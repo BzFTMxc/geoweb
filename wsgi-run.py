@@ -3,7 +3,7 @@
 
 """ wsgi-run.py : wsgi-run.py """
 
-from margikarp import create_app
+from geoweb import create_app
 from configparser import ConfigParser
 import os
 
@@ -11,7 +11,7 @@ __author__ = "Abhay Arora (@BzFTMxc)"
 
 config = ConfigParser()
 config.read(os.path.dirname(os.path.abspath(__file__)) +\
-            '/config/margikarp.ini')
+            '/config/geoweb.ini')
 
 app = create_app(config)
 
