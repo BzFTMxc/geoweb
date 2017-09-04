@@ -6,6 +6,7 @@
 from flask import Blueprint
 from flask import jsonify
 from flask import current_app as app
+from flask import send_file
 import os
 
 __author__ = "Abhay Arora (@BzFTMxc)"
@@ -36,9 +37,16 @@ def list_sams():
             data=['Could not search for SAMs.']
         ))
 
+# Simply sending json files as response
+# @TODO: structure the response in better way to include status
 @API.route('/layer/<sam>/<layer>')
 def get_layer(sam, layer):
-    return jsonify(dict(
-        sam=sam,
-        layer=layer
-    ))
+    try:
+        data_dir = app._CONF.get('storage', 'data_dir')
+        fn = os.path.join(data_dir, sam, layer + '.json')
+        ret = send_file(fn)
+    except:
+        ret = jsoniify(dict(
+            errors=['Could not load requested layer!']
+        ))
+    return ret

@@ -1,11 +1,28 @@
 doctype html
 html
-	head
-		title Margikarp
-		link(rel="stylesheet", type="text/css", href="/static/css/material.min.css")
-		link(rel="stylesheet", type="text/css", href="/static/css/margikarp.css")
-	body
-		script(type="text/javascript", src="/static/js/material.min.js")
-		script(type="text/javascript", src="/static/js/angular.min.js")
-		script(type="text/javascript", src="/static/js/angular-route.min.js")
-		script(type="text/javascript", src="/static/js/margikarp.js")
+  head
+    title GeoWeb
+    link(rel="stylesheet", type="text/css", href="/static/css/material.min.css")
+    link(rel="stylesheet", type="text/css", href="/static/css/geoweb.css")
+  body(ng-app="geoweb")
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+      header.mdl-layout__header
+        .mdl-layout__header-row
+          span.mdl-layout-title GeoWeb
+          .mdl-layout-spacer
+          nav.mdl-navigation.mdl-layout--large-screen-only
+            a.mdl-navigation__link(href='https://github.com/BzFTMxc', target="_blank")
+              i.material-icons code
+              | @BzFTMxc
+      .mdl-layout__drawer
+        span.mdl-layout-title GeoWeb Utilities
+        nav.mdl-navigation
+          a.mdl-navigation__link(href='#!/network-tools') Network Tools
+      main.mdl-layout__content
+        .page-content(ng-view)
+    link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    script(type="text/javascript", src="/static/js/material.min.js")
+    script(type="text/javascript", src="/static/js/angular.min.js")
+    script(type="text/javascript", src="/static/js/angular-route.min.js")
+    script(type="text/javascript", src="/static/js/geoweb.js")
+    script(src="https://maps.googleapis.com/maps/api/js?key=#{maps_api_key}")

@@ -1,5 +1,13 @@
 /**
- * margikarp.css
+ * geoweb.css
  * Author: Abhay Arora (@BzFTMxc)
  */
 
+.subhead{
+    background: #EEE linear-gradient(#FFF, #E5E5E5);
+}
+
+#map{
+    width: 100%;
+    height: 800px;
+}
