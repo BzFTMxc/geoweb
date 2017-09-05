@@ -316,13 +316,12 @@ _A.controller('NetworkTools', ['$scope', '$http', function($scope, $http) {
 			lng: parseFloat(cable_coordinates_raw[c])
 		    };
 		}
-		console.log(cable_coordinates);
 		var cable_polyline = new google.maps.Polyline({
 		    path: cable_coordinates,
 		    geodesic: true,
 		    strokeColor: '#1982D1',
 		    strokeOpacity: 1.0,
-		    strokeWeight: 3
+		    strokeWeight: 1
 		});
 		cable_polyline.setMap(map);
 	    }
@@ -331,6 +330,81 @@ _A.controller('NetworkTools', ['$scope', '$http', function($scope, $http) {
 	    $scope.errors = ['Could not fetch coaxialCable layer!'];
 	});
 	
+	// structureRoute
+	// @TODO: Make a generic function to load any layer.
+	//        Make sure data from API is self descriptive and generic
+	$http.get('/api/layer/' + sam + '/structureRoute').then(function(resp) {
+
+	    data = resp.data;
+	    element_type = data.element;
+	    elements = data.data;
+
+	    // @TODO: Save each instance of polyline in an array
+	    //        for future manipulation
+	    //        Change the iteration to make more effective
+	    for(var i = 0; i < elements.length; i ++){
+		// render each elem
+		var elem_coordinates_raw = elements[i].posList.split(' ');
+		var elem_coordinates = [];
+		for (var c = 0; c < elem_coordinates_raw.length; c ++){
+		    elem_coordinates[elem_coordinates.length] = {
+			lat: parseFloat(elem_coordinates_raw[c++]),
+			lng: parseFloat(elem_coordinates_raw[c])
+		    };
+		}
+		var elem_polyline = new google.maps.Polyline({
+		    path: elem_coordinates,
+		    geodesic: true,
+		    strokeColor: '#CC0033',
+		    strokeOpacity: 0.5,
+		    strokeWeight: 2
+		});
+		elem_polyline.setMap(map);
+	    }
+	    
+	}, function(resp){
+	    $scope.errors = ['Could not fetch structureRoute layer!'];
+	});
+
+
+
+	// Point Geometry here : Don't mix with elems and routes
+	
+	// structurePoint
+	// @TODO: Make a generic function to load any layer.
+	//        Make sure data from API is self descriptive and generic
+	$http.get('/api/layer/' + sam + '/structurePoint').then(function(resp) {
+
+	    data = resp.data;
+	    element_type = data.element;
+	    elements = data.data;
+
+	    // @TODO: Save each instance of polyline in an array
+	    //        for future manipulation
+	    //        Change the iteration to make more effective
+	    for(var i = 0; i < elements.length; i ++){
+		// render each elem
+		var elem_coordinates_raw = elements[i].pos.split(' ');
+		var elem_coordinates = {
+		    lat: parseFloat(elem_coordinates_raw[0]),
+		    lng: parseFloat(elem_coordinates_raw[1]) 
+		};
+		var point = new google.maps.Circle({
+		    strokeColor: '#33CC66',
+		    strokeOpacity: 1.0,
+		    strokeWeight: 1,
+		    fillColor: '#00FF00',
+		    fillOpacity: 0.2,
+		    map: map,
+		    center: elem_coordinates,
+		    radius: 2
+		});
+	    }
+	    
+	}, function(resp){
+	    $scope.errors = ['Could not fetch structurePoint layer!'];
+	});
+
     };
     
 }]);
