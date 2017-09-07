@@ -1,21 +1,23 @@
 doctype html
 html
   head
-    title GeoWeb
+    title PNI Maps
     link(rel="stylesheet", type="text/css", href="/static/css/material.min.css")
     link(rel="stylesheet", type="text/css", href="/static/css/geoweb.css")
   body(ng-app="geoweb")
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
       header.mdl-layout__header
         .mdl-layout__header-row
-          span.mdl-layout-title GeoWeb
+          span.mdl-layout-title
+                  | PNI Maps
+                  .sup Beta
           .mdl-layout-spacer
           nav.mdl-navigation.mdl-layout--large-screen-only
             a.mdl-navigation__link(href='https://github.com/BzFTMxc', target="_blank")
               i.material-icons code
-              | @BzFTMxc
+              b @BzFTMxc
       .mdl-layout__drawer
-        span.mdl-layout-title GeoWeb Utilities
+        span.mdl-layout-title PNI Map Utilities
         nav.mdl-navigation
           a.mdl-navigation__link(href='#!/network-tools') Network Tools
       main.mdl-layout__content
